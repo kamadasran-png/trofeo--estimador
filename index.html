@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#263b2d">
-  <meta name="description" content="Estimación orientativa de trofeos de ciervo, jabalí y macho montés. Funciona sin conexión tras la primera carga.">
+  <meta name="description" content="Estimación experimental de trofeos de ciervo, jabalí, macho montés y muflón. Funciona sin conexión tras la primera carga.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -29,7 +29,7 @@
       <select id="species" class="control">
         <option value="ciervo">🦌 Ciervo</option>
         <option value="jabali">🐗 Jabalí</option>
-        <option value="montes">🐐 Macho montés</option>
+        <option value="montes">🐐 Macho montés</option>\n        <option value="muflon">🐏 Muflón (ficha experimental)</option>
       </select>
 
       <form id="estimatorForm" novalidate>
@@ -51,7 +51,7 @@
       <div class="result-head"><div><p class="eyebrow">RESULTADO ORIENTATIVO</p><h2 id="resultSpecies">Ciervo</h2></div><span class="medal" id="resultCategory">—</span></div>
       <p class="score" id="resultScore">— <span>puntos estimados</span></p>
       <p id="resultDetails" class="result-details"></p>
-      <p class="result-warning">Estimación experimental no oficial. No constituye una homologación CIC ni sustituye la medición realizada por un evaluador homologador. Las fórmulas y umbrales de este MVP deben validarse antes de utilizarse para decisiones comerciales o de homologación.</p>
+      <p class="result-warning">Estimación experimental no oficial. No constituye una homologación CIC ni sustituye la medición realizada por un evaluador homologador. Las fórmulas y umbrales de este MVP deben validarse antes de utilizarse para decisiones comerciales o de homologación. En muflón se muestra un índice experimental por suma simple de medidas, no una puntuación CIC.</p>
       <button id="saveRecord" class="secondary-button" type="button">Guardar ficha en este dispositivo</button>
     </section>
 
