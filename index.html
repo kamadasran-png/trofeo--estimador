@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#263b2d">
+  <meta name="description" content="Estimación orientativa de trofeos de ciervo, jabalí y macho montés. Funciona sin conexión tras la primera carga.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Trofeo Estimador | Hunters</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">JH</div>
+    <div><p class="eyebrow">PEÑA JABALÍ HUNTERS</p><h1>Trofeo Estimador</h1></div>
+    <span class="offline-pill" id="connectionState">Preparando…</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">HERRAMIENTA DE CAMPO · MVP 0.1</p>
+      <h2>Una primera estimación,<br>en unos segundos.</h2>
+      <p>Introduce las medidas visibles del trofeo y obtén una estimación orientativa. No sustituye la homologación oficial.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="speciesHeading">
+      <label class="field-label" id="speciesHeading" for="species">1. Selecciona la especie</label>
+      <select id="species" class="control">
+        <option value="ciervo">🦌 Ciervo</option>
+        <option value="jabali">🐗 Jabalí</option>
+        <option value="montes">🐐 Macho montés</option>
+      </select>
+
+      <form id="estimatorForm" novalidate>
+        <div id="dynamicFields" class="fields"></div>
+        <div class="field-group">
+          <label class="field-label" for="adjustment">Ajuste provisional por preparación</label>
+          <select id="adjustment" class="control">
+            <option value="0">Sin ajuste (0 %)</option>
+            <option value="1.5" selected>Aplicar ajuste experimental del 1,5 %</option>
+            <option value="2">Aplicar ajuste experimental del 2 %</option>
+          </select>
+          <p class="hint">Este ajuste no está validado científicamente ni reproduce una corrección oficial del CIC. Puedes dejarlo en 0 %.</p>
+        </div>
+        <button class="primary-button" type="submit">Calcular estimación</button>
+      </form>
+    </section>
+
+    <section id="result" class="result-panel" aria-live="polite" hidden>
+      <div class="result-head"><div><p class="eyebrow">RESULTADO ORIENTATIVO</p><h2 id="resultSpecies">Ciervo</h2></div><span class="medal" id="resultCategory">—</span></div>
+      <p class="score" id="resultScore">— <span>puntos estimados</span></p>
+      <p id="resultDetails" class="result-details"></p>
+      <p class="result-warning">Estimación experimental no oficial. No constituye una homologación CIC ni sustituye la medición realizada por un evaluador homologador. Las fórmulas y umbrales de este MVP deben validarse antes de utilizarse para decisiones comerciales o de homologación.</p>
+      <button id="saveRecord" class="secondary-button" type="button">Guardar ficha en este dispositivo</button>
+    </section>
+
+    <section class="panel records-panel">
+      <div class="section-title-row"><div><p class="eyebrow">HISTORIAL LOCAL</p><h2>Mis fichas</h2></div><button id="exportRecords" class="text-button" type="button">Exportar JSON</button></div>
+      <p class="hint">Las fichas se guardan únicamente en este dispositivo. Borrar los datos del navegador puede eliminarlas.</p>
+      <div id="recordsList" class="records-list"><p class="empty-state">Todavía no has guardado ninguna ficha.</p></div>
+    </section>
+
+    <details class="guide panel"><summary>Cómo medir para obtener una estimación útil</summary><ul><li>Utiliza centímetros y milímetros según indique cada campo.</li><li>Si una medida es aproximada, tenlo en cuenta al interpretar el resultado.</li><li>Cuenta únicamente las puntas siguiendo el criterio provisional que hayas decidido usar.</li><li>Las guías ilustradas y la validación con trofeos medidos se incorporarán en la siguiente iteración.</li></ul></details>
+  </main>
+  <footer><p>Peña Jabalí Hunters · Prototipo privado de pruebas</p><p>Sin conexión tras la primera carga · Datos almacenados localmente</p></footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
