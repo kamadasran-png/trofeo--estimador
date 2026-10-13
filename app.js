@@ -46,17 +46,17 @@ const SPECIES = {
       { id: 'lengthRight', label: 'Longitud de la cuerna derecha', unit: 'cm', min: 0, max: 100, step: 0.1, help: 'Mide la longitud principal siguiendo la curva.', full: true },
       { id: 'browLeft', label: 'Longitud de la luchadera izquierda', unit: 'cm', min: 0, max: 40, step: 0.1, help: 'Medida descriptiva de la punta frontal.' },
       { id: 'browRight', label: 'Longitud de la luchadera derecha', unit: 'cm', min: 0, max: 40, step: 0.1, help: 'Medida descriptiva de la punta frontal.' },
-      { id: 'palmLengthLeft', label: 'Longitud de la palma izquierda', unit: 'cm', min: 0, max: 80, step: 0.1, help: 'Longitud de la zona ensanchada o palmeada.' },
-      { id: 'palmLengthRight', label: 'Longitud de la palma derecha', unit: 'cm', min: 0, max: 80, step: 0.1, help: 'Longitud de la zona ensanchada o palmeada.' },
-      { id: 'palmWidthLeft', label: 'Anchura máxima de la palma izquierda', unit: 'cm', min: 0, max: 40, step: 0.1, help: 'Anchura máxima de la zona palmeada.' },
-      { id: 'palmWidthRight', label: 'Anchura máxima de la palma derecha', unit: 'cm', min: 0, max: 40, step: 0.1, help: 'Anchura máxima de la zona palmeada.' },
+      { id: 'palaLengthLeft', label: 'Longitud de la pala izquierda', unit: 'cm', min: 0, max: 80, step: 0.1, help: 'Longitud de la zona ensanchada de la pala.' },
+      { id: 'palaLengthRight', label: 'Longitud de la pala derecha', unit: 'cm', min: 0, max: 80, step: 0.1, help: 'Longitud de la zona ensanchada de la pala.' },
+      { id: 'palaWidthLeft', label: 'Anchura máxima de la pala izquierda', unit: 'cm', min: 0, max: 40, step: 0.1, help: 'Anchura máxima de la pala.' },
+      { id: 'palaWidthRight', label: 'Anchura máxima de la pala derecha', unit: 'cm', min: 0, max: 40, step: 0.1, help: 'Anchura máxima de la pala.' },
       { id: 'beamCircLeft', label: 'Perímetro de la cuerna izquierda', unit: 'cm', min: 0, max: 40, step: 0.1, help: 'Medición descriptiva de la base o tramo indicado.' },
       { id: 'beamCircRight', label: 'Perímetro de la cuerna derecha', unit: 'cm', min: 0, max: 40, step: 0.1, help: 'Medición descriptiva de la base o tramo indicado.' },
       { id: 'dryWeight', label: 'Peso seco de las cuernas (opcional en futuras versiones)', unit: 'g', min: 0, max: 10000, step: 1, help: 'Para esta primera ficha se registra como dato de entrada obligatorio si se introduce; si no se conoce, usa 0.', full: true }
     ],
-    calculate: v => v.lengthLeft + v.lengthRight + v.browLeft + v.browRight + v.palmLengthLeft + v.palmLengthRight + v.palmWidthLeft + v.palmWidthRight + v.beamCircLeft + v.beamCircRight + v.dryWeight / 100,
+    calculate: v => v.lengthLeft + v.lengthRight + v.browLeft + v.browRight + v.palaLengthLeft + v.palaLengthRight + v.palaWidthLeft + v.palaWidthRight + v.beamCircLeft + v.beamCircRight + v.dryWeight / 100,
     category: () => 'Índice experimental · no homologado',
-    detail: v => `Longitud cuernas: ${v.lengthLeft}/${v.lengthRight} cm · Luchaderas: ${v.browLeft}/${v.browRight} cm · Palmas (longitud): ${v.palmLengthLeft}/${v.palmLengthRight} cm · Palmas (anchura): ${v.palmWidthLeft}/${v.palmWidthRight} cm · Perímetros: ${v.beamCircLeft}/${v.beamCircRight} cm · Peso seco introducido: ${v.dryWeight} g. Índice experimental por suma de medidas y peso dividido entre 100; no es puntuación CIC.`
+    detail: v => `Longitud cuernas: ${v.lengthLeft}/${v.lengthRight} cm · Luchaderas: ${v.browLeft}/${v.browRight} cm · Palas (longitud): ${v.palaLengthLeft}/${v.palaLengthRight} cm · Palas (anchura): ${v.palaWidthLeft}/${v.palaWidthRight} cm · Perímetros: ${v.beamCircLeft}/${v.beamCircRight} cm · Peso seco introducido: ${v.dryWeight} g. Índice experimental por suma de medidas y peso dividido entre 100; no es puntuación CIC.`
   },
   montes: {
     name: 'Macho montés',
