@@ -179,7 +179,25 @@ function exportRecords() {
   URL.revokeObjectURL(url);
 }
 
-$('species').addEventListener('change', renderFields);
+function syncSpeciesCards() {
+  const selected = $('species').value;
+  document.querySelectorAll('.species-card').forEach(card => {
+    const active = card.dataset.species === selected;
+    card.classList.toggle('is-selected', active);
+    card.setAttribute('aria-pressed', String(active));
+  });
+}
+$('speciesCards').addEventListener('click', event => {
+  const card = event.target.closest('[data-species]');
+  if (!card) return;
+  $('species').value = card.dataset.species;
+  renderFields();
+  syncSpeciesCards();
+  $('estimatorForm').scrollIntoView({behavior:'smooth', block:'start'});
+  const firstField = $('dynamicFields').querySelector('input, select');
+  if (firstField) window.setTimeout(() => firstField.focus({preventScroll:true}), 350);
+});
+$('species').addEventListener('change', () => { renderFields(); syncSpeciesCards(); });
 $('estimatorForm').addEventListener('submit', calculate);
 $('saveRecord').addEventListener('click', saveRecord);
 $('exportRecords').addEventListener('click', exportRecords);
@@ -190,7 +208,7 @@ $('recordsList').addEventListener('click', event => {
 });
 function updateConnectionState() { $('connectionState').textContent = navigator.onLine ? 'En línea' : 'Sin conexión'; }
 window.addEventListener('online', updateConnectionState); window.addEventListener('offline', updateConnectionState);
-renderFields(); renderRecords(); updateConnectionState();
+renderFields(); syncSpeciesCards(); renderRecords(); updateConnectionState();
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
 }
