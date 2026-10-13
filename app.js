@@ -22,6 +22,23 @@ const SPECIES = {
     category: s => s < 100 ? 'Sin medalla' : s < 105 ? 'Bronce orientativo' : s < 110 ? 'Plata orientativa' : 'Oro orientativo',
     detail: v => `Longitud: ${v.length} cm · Anchura: ${v.width} mm.`
   },
+  muflon: {
+    name: 'Muflón',
+    fields: [
+      { id: 'lengthLeft', label: 'Longitud del cuerno izquierdo', unit: 'cm', min: 0, max: 150, step: 0.1, help: 'Sigue la curvatura exterior desde la base hasta la punta.', full: true },
+      { id: 'lengthRight', label: 'Longitud del cuerno derecho', unit: 'cm', min: 0, max: 150, step: 0.1, help: 'Sigue la curvatura exterior desde la base hasta la punta.', full: true },
+      { id: 'circ1Left', label: 'Perímetro del primer tercio · izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide la zona más gruesa de ese tercio.' },
+      { id: 'circ1Right', label: 'Perímetro del primer tercio · derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide la zona más gruesa de ese tercio.' },
+      { id: 'circ2Left', label: 'Perímetro del segundo tercio · izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide la zona más gruesa de ese tercio.' },
+      { id: 'circ2Right', label: 'Perímetro del segundo tercio · derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide la zona más gruesa de ese tercio.' },
+      { id: 'circ3Left', label: 'Perímetro del tercer tercio · izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide la zona más gruesa de ese tercio.' },
+      { id: 'circ3Right', label: 'Perímetro del tercer tercio · derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide la zona más gruesa de ese tercio.' },
+      { id: 'spread', label: 'Envergadura exterior máxima', unit: 'cm', min: 0, max: 150, step: 0.1, help: 'Dato complementario: distancia exterior máxima, no solo punta a punta.', full: true }
+    ],
+    calculate: v => v.lengthLeft + v.lengthRight + v.circ1Left + v.circ1Right + v.circ2Left + v.circ2Right + v.circ3Left + v.circ3Right + v.spread,
+    category: () => 'Índice experimental · no homologado',
+    detail: v => `Longitud cuernos: ${v.lengthLeft} / ${v.lengthRight} cm · Perímetros por tercios (izq./der.): ${v.circ1Left}/${v.circ1Right}, ${v.circ2Left}/${v.circ2Right}, ${v.circ3Left}/${v.circ3Right} cm · Envergadura exterior: ${v.spread} cm. Índice experimental: suma simple de las medidas introducidas; no es una puntuación CIC.`
+  },
   montes: {
     name: 'Macho montés',
     fields: [
