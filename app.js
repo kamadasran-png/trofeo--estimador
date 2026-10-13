@@ -86,12 +86,17 @@ const SPECIES = {
   montes: {
     name: 'Macho montés',
     fields: [
-      { id: 'length', label: 'Longitud media de los cuernos', unit: 'cm', min: 0, max: 150, step: 0.1, help: 'Medida aproximada siguiendo la curva exterior.', full: true },
-      { id: 'perimeter', label: 'Perímetro medio de las bases', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Medida alrededor de la base de cada cuerno.', full: true }
+      { id: 'lengthLeft', label: 'Longitud del cuerno izquierdo', unit: 'cm', min: 0, max: 150, step: 0.1, help: 'Mide siguiendo la curvatura exterior.', full: true },
+      { id: 'lengthRight', label: 'Longitud del cuerno derecho', unit: 'cm', min: 0, max: 150, step: 0.1, help: 'Mide siguiendo la curvatura exterior.', full: true },
+      { id: 'circBaseLeft', label: 'Perímetro basal izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide alrededor de la base del cuerno.' },
+      { id: 'circBaseRight', label: 'Perímetro basal derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide alrededor de la base del cuerno.' },
+      { id: 'circMidLeft', label: 'Perímetro en zona media · izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Toma la medida en un punto definido y usa el mismo criterio en ambos cuernos.' },
+      { id: 'circMidRight', label: 'Perímetro en zona media · derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Toma la medida en un punto definido y usa el mismo criterio en ambos cuernos.' },
+      { id: 'spread', label: 'Separación exterior máxima', unit: 'cm', min: 0, max: 150, step: 0.1, help: 'Dato descriptivo complementario, no una puntuación oficial.', full: true }
     ],
-    calculate: v => v.length * 1.2 + v.perimeter * 2.5,
-    category: s => s < 205 ? 'Sin medalla' : s < 215 ? 'Bronce orientativo' : s < 225 ? 'Plata orientativa' : 'Oro orientativo',
-    detail: v => `Longitud media: ${v.length} cm · Perímetro medio: ${v.perimeter} cm.`
+    calculate: v => v.lengthLeft + v.lengthRight + v.circBaseLeft + v.circBaseRight + v.circMidLeft + v.circMidRight + v.spread,
+    category: () => 'Índice experimental · no homologado',
+    detail: v => `Longitud cuernos izq./der.: ${v.lengthLeft}/${v.lengthRight} cm · Perímetros basales: ${v.circBaseLeft}/${v.circBaseRight} cm · Perímetros zona media: ${v.circMidLeft}/${v.circMidRight} cm · Separación exterior máxima: ${v.spread} cm. Índice experimental por suma simple de medidas; no es puntuación CIC.`
   }
 };
 
