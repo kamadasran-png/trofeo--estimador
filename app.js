@@ -4,23 +4,33 @@ const SPECIES = {
   ciervo: {
     name: 'Ciervo',
     fields: [
-      { id: 'length', label: 'Longitud media de las cuernas', unit: 'cm', min: 1, max: 200, step: 0.1, help: 'Introduce la media en centímetros.', full: true },
-      { id: 'points', label: 'Número total de puntas', unit: 'puntas', min: 0, max: 100, step: 1, help: 'Cuenta las puntas según el criterio provisional de esta app.' },
-      { id: 'thickness', label: 'Grosor visual estimado', type: 'select', options: [{value:'15',label:'Delgado (15)'},{value:'18',label:'Medio (18)'},{value:'22',label:'Grueso (22)'}], help: 'Valor experimental definido para este MVP.' }
+      { id: 'lengthLeft', label: 'Longitud de la cuerna izquierda', unit: 'cm', min: 0, max: 200, step: 0.1, help: 'Mide siguiendo la curva principal de la cuerna.', full: true },
+      { id: 'lengthRight', label: 'Longitud de la cuerna derecha', unit: 'cm', min: 0, max: 200, step: 0.1, help: 'Mide siguiendo la curva principal de la cuerna.', full: true },
+      { id: 'circBaseLeft', label: 'Perímetro de la base · izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide alrededor de la base de la cuerna.' },
+      { id: 'circBaseRight', label: 'Perímetro de la base · derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide alrededor de la base de la cuerna.' },
+      { id: 'circBeamLeft', label: 'Perímetro de la cuerna · izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Anota el perímetro en un punto definido y repite el mismo criterio en ambos lados.' },
+      { id: 'circBeamRight', label: 'Perímetro de la cuerna · derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Anota el perímetro en un punto definido y repite el mismo criterio en ambos lados.' },
+      { id: 'pointsLeft', label: 'Número de puntas · izquierdo', unit: 'puntas', min: 0, max: 50, step: 1, help: 'Cuenta las puntas de la cuerna izquierda.' },
+      { id: 'pointsRight', label: 'Número de puntas · derecho', unit: 'puntas', min: 0, max: 50, step: 1, help: 'Cuenta las puntas de la cuerna derecha.' },
+      { id: 'spread', label: 'Envergadura exterior máxima', unit: 'cm', min: 0, max: 200, step: 0.1, help: 'Dato descriptivo complementario; no se usa como puntuación oficial.', full: true }
     ],
-    calculate: v => v.length * 0.6 + v.points * 1.5 + v.thickness,
-    category: s => s < 165 ? 'Sin medalla' : s < 173 ? 'Bronce orientativo' : s < 181 ? 'Plata orientativa' : 'Oro orientativo',
-    detail: v => `Longitud media: ${v.length} cm · Puntas: ${v.points} · Grosor: ${v.thickness} puntos de modelo.`
+    calculate: v => v.lengthLeft + v.lengthRight + v.circBaseLeft + v.circBaseRight + v.circBeamLeft + v.circBeamRight + v.pointsLeft + v.pointsRight + v.spread,
+    category: () => 'Índice experimental · no homologado',
+    detail: v => `Longitud cuernas izq./der.: ${v.lengthLeft}/${v.lengthRight} cm · Perímetros de base: ${v.circBaseLeft}/${v.circBaseRight} cm · Perímetros de cuerna: ${v.circBeamLeft}/${v.circBeamRight} cm · Puntas izq./der.: ${v.pointsLeft}/${v.pointsRight} · Envergadura exterior: ${v.spread} cm. Índice experimental por suma simple de las medidas; no es puntuación CIC.`
   },
   jabali: {
     name: 'Jabalí',
     fields: [
-      { id: 'length', label: 'Longitud del colmillo más largo', unit: 'cm', min: 0, max: 30, step: 0.1, help: 'Medida aproximada por la curvatura exterior.', full: true },
-      { id: 'width', label: 'Anchura del colmillo', unit: 'mm', min: 0, max: 50, step: 0.1, help: 'Introduce la anchura aproximada en milímetros.', full: true }
+      { id: 'lengthLeft', label: 'Longitud del colmillo inferior izquierdo', unit: 'cm', min: 0, max: 30, step: 0.1, help: 'Mide siguiendo la curvatura exterior del colmillo.', full: true },
+      { id: 'lengthRight', label: 'Longitud del colmillo inferior derecho', unit: 'cm', min: 0, max: 30, step: 0.1, help: 'Mide siguiendo la curvatura exterior del colmillo.', full: true },
+      { id: 'widthLeft', label: 'Anchura del colmillo izquierdo', unit: 'mm', min: 0, max: 50, step: 0.1, help: 'Mide la anchura máxima del colmillo inferior.' },
+      { id: 'widthRight', label: 'Anchura del colmillo derecho', unit: 'mm', min: 0, max: 50, step: 0.1, help: 'Mide la anchura máxima del colmillo inferior.' },
+      { id: 'upperLengthLeft', label: 'Longitud del canino superior izquierdo', unit: 'cm', min: 0, max: 15, step: 0.1, help: 'Dato descriptivo complementario; no forma parte del índice base.', full: true },
+      { id: 'upperLengthRight', label: 'Longitud del canino superior derecho', unit: 'cm', min: 0, max: 15, step: 0.1, help: 'Dato descriptivo complementario; no forma parte del índice base.', full: true }
     ],
-    calculate: v => v.length * 4.5 + v.width * 3,
-    category: s => s < 100 ? 'Sin medalla' : s < 105 ? 'Bronce orientativo' : s < 110 ? 'Plata orientativa' : 'Oro orientativo',
-    detail: v => `Longitud: ${v.length} cm · Anchura: ${v.width} mm.`
+    calculate: v => v.lengthLeft + v.lengthRight + (v.widthLeft + v.widthRight) / 10,
+    category: () => 'Índice experimental · no homologado',
+    detail: v => `Colmillos inferiores: longitud izq./der. ${v.lengthLeft}/${v.lengthRight} cm · Anchura izq./der. ${v.widthLeft}/${v.widthRight} mm · Caninos superiores izq./der.: ${v.upperLengthLeft}/${v.upperLengthRight} cm (dato complementario). Índice experimental: suma de longitudes inferiores más anchuras convertidas a cm; no es puntuación oficial.`
   },
   muflon: {
     name: 'Muflón',
