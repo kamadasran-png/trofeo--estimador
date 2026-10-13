@@ -2,13 +2,14 @@
   "name": "Trofeo Estimador | Peña Jabalí Hunters",
   "short_name": "Trofeo Hunters",
   "description": "Estimación orientativa de trofeos de caza mayor.",
+  "icons": [
+    { "src": "logo-pjhunters.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
   "lang": "es-ES",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f4f1e8",
   "theme_color": "#263b2d",
-  "icons": [
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
-  ]
+
 }
