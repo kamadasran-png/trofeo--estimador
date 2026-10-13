@@ -58,6 +58,21 @@ const SPECIES = {
     category: () => 'Índice experimental · no homologado',
     detail: v => `Longitud cuernas: ${v.lengthLeft}/${v.lengthRight} cm · Luchaderas: ${v.browLeft}/${v.browRight} cm · Palas (longitud): ${v.palaLengthLeft}/${v.palaLengthRight} cm · Palas (anchura): ${v.palaWidthLeft}/${v.palaWidthRight} cm · Perímetros: ${v.beamCircLeft}/${v.beamCircRight} cm · Peso seco introducido: ${v.dryWeight} g. Índice experimental por suma de medidas y peso dividido entre 100; no es puntuación CIC.`
   },
+  arrui: {
+    name: 'Arruí',
+    fields: [
+      { id: 'lengthLeft', label: 'Longitud del cuerno izquierdo', unit: 'cm', min: 0, max: 120, step: 0.1, help: 'Mide siguiendo la curvatura exterior desde la base hasta la punta.', full: true },
+      { id: 'lengthRight', label: 'Longitud del cuerno derecho', unit: 'cm', min: 0, max: 120, step: 0.1, help: 'Mide siguiendo la curvatura exterior desde la base hasta la punta.', full: true },
+      { id: 'circBaseLeft', label: 'Perímetro basal izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide alrededor de la base del cuerno izquierdo.' },
+      { id: 'circBaseRight', label: 'Perímetro basal derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Mide alrededor de la base del cuerno derecho.' },
+      { id: 'circMidLeft', label: 'Perímetro en zona media · izquierdo', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Medición descriptiva tomada siempre en un punto comparable.' },
+      { id: 'circMidRight', label: 'Perímetro en zona media · derecho', unit: 'cm', min: 0, max: 60, step: 0.1, help: 'Medición descriptiva tomada siempre en un punto comparable.' },
+      { id: 'spread', label: 'Separación exterior máxima de los cuernos', unit: 'cm', min: 0, max: 120, step: 0.1, help: 'Dato complementario descriptivo; no equivale a una medida oficial de puntuación.', full: true }
+    ],
+    calculate: v => v.lengthLeft + v.lengthRight + v.circBaseLeft + v.circBaseRight + v.circMidLeft + v.circMidRight + v.spread,
+    category: () => 'Índice experimental · no homologado',
+    detail: v => `Longitud cuernos izq./der.: ${v.lengthLeft}/${v.lengthRight} cm · Perímetros basales: ${v.circBaseLeft}/${v.circBaseRight} cm · Perímetros zona media: ${v.circMidLeft}/${v.circMidRight} cm · Separación exterior máxima: ${v.spread} cm. Índice experimental por suma simple de medidas; no es una puntuación CIC.`
+  },
   montes: {
     name: 'Macho montés',
     fields: [
