@@ -24,15 +24,46 @@
       <p>Introduce las medidas visibles del trofeo y obtén una estimación orientativa. No sustituye la homologación oficial.</p>
     </section>
 
-    <section class="panel" aria-labelledby="speciesHeading">
-      <label class="field-label" id="speciesHeading" for="species">1. Selecciona la especie</label>
-      <select id="species" class="control">
-        <option value="ciervo">🦌 Ciervo</option>
-        <option value="jabali">🐗 Jabalí</option>
-        <option value="montes">🐐 Macho montés</option>
-        <option value="muflon">🐏 Muflón (ficha experimental)</option>
-        <option value="gamo">🦌 Gamo (ficha experimental)</option>
-        <option value="arrui">🐏 Arruí (ficha experimental)</option>
+    <section class="panel species-panel" aria-labelledby="speciesHeading">
+      <div class="species-heading">
+        <p class="eyebrow">ELIGE TU TROFEO</p>
+        <label class="field-label" id="speciesHeading">1. Selecciona la especie</label>
+        <p class="hint">Pulsa sobre una imagen para abrir su ficha de medidas.</p>
+      </div>
+      <div id="speciesCards" class="species-grid" aria-label="Especies disponibles">
+        <button class="species-card" type="button" data-species="ciervo" aria-label="Seleccionar ciervo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Red_deer_stag.jpg?width=800" alt="Ciervo macho con cuerna" loading="eager">
+          <span>Ciervo</span><small>Cuerna</small>
+        </button>
+        <button class="species-card" type="button" data-species="jabali" aria-label="Seleccionar jabalí">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Wild_boar_%28Sus_scrofa%29.jpg?width=800" alt="Jabalí en su entorno natural" loading="lazy">
+          <span>Jabalí</span><small>Colmillos</small>
+        </button>
+        <button class="species-card" type="button" data-species="montes" aria-label="Seleccionar macho montés">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Iberian.ibex.jpg?width=800" alt="Macho montés con cuernos curvados" loading="lazy">
+          <span>Macho montés</span><small>Cuernos</small>
+        </button>
+        <button class="species-card" type="button" data-species="muflon" aria-label="Seleccionar muflón">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mufl%C3%B3n.jpg?width=800" alt="Muflón europeo" loading="lazy">
+          <span>Muflón</span><small>Ficha experimental</small>
+        </button>
+        <button class="species-card" type="button" data-species="gamo" aria-label="Seleccionar gamo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fallow_Deer_%2846642098774%29.jpg?width=800" alt="Gamo macho con palas" loading="lazy">
+          <span>Gamo</span><small>Palas</small>
+        </button>
+        <button class="species-card" type="button" data-species="arrui" aria-label="Seleccionar arruí">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aoudad_%28ammotragus_lervia%29.jpg?width=800" alt="Arruí macho" loading="lazy">
+          <span>Arruí</span><small>Cuernos</small>
+        </button>
+      </div>
+      <label class="field-label species-fallback-label" for="species">Selección alternativa</label>
+      <select id="species" class="control species-fallback">
+        <option value="ciervo">Ciervo</option>
+        <option value="jabali">Jabalí</option>
+        <option value="montes">Macho montés</option>
+        <option value="muflon">Muflón (ficha experimental)</option>
+        <option value="gamo">Gamo (ficha experimental)</option>
+        <option value="arrui">Arruí (ficha experimental)</option>
       </select>
 
       <form id="estimatorForm" novalidate>
